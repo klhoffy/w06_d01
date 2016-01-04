@@ -1,0 +1,27 @@
+<h1><%= @user.name %>'s Profile</h1>
+
+<hr>
+
+<% if @user.posts.count > 0 %>
+	<% @user.posts.each do |post| %>
+		<h4><%= post.title %></h4>
+		<p><%= post.body %></p>
+		<% if post.comments.count > 0 %>
+			<% post.comments.each do |comment| %>
+				<h6><%= comment.user.name %></h6>
+				<p><%= comment.body %></p>
+			<% end %>
+		<% else %>
+			<h4>There are no comments on this post yet.</h4>
+		<% end %>
+		<%= render 'comments/form', :post => post %>
+	<% end %>
+<% else %>
+	<h4>This user does not have any posts.</h4>
+<% end %>
+
+<% if @user == current_user %>
+	<hr>
+	<h4>Add a new post</h4>
+	<%= render 'posts/form' %>
+<% end %>

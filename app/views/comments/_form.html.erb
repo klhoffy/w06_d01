@@ -1,0 +1,20 @@
+<h6>Add a Comment</h6>
+
+<%= form_for [@user, post, @comment] do |f| %>
+	<div class="form-group">
+		<%= f.label :body %>
+		<%= f.text_area :body %>
+	</div>
+	<div class="form-group">
+		<% f.label :post_id %>
+		<%= f.hidden_field :post_id, :value => post.id %>
+	</div>
+	<div class="form-group">
+		<% f.label :user_id %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+	</div>
+	<div>
+		<%= f.submit %>
+	</div>
+
+<% end %>
